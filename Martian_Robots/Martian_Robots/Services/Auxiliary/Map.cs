@@ -10,12 +10,12 @@ namespace Martian_Robots.Services.Auxiliary
         {
             mapDimensions.X = X; mapDimensions.Y = Y;
 
-            for(int i = 0; i <= X; i++)
+            for (int i = 0; i <= X; i++)
             {
-                for (int j=0;j <= Y; j++)
+                for (int j = 0; j <= Y; j++)
                 {
                     bool isBorder = false;
-                    if (i == 0 || j == 0 || i == X || j == X)
+                    if (i == 0 || j == 0 || i == X || j == Y)
                         isBorder = true;
                     grid.Add(new Cell(new Point(i, j), isBorder));
                 }

@@ -27,7 +27,8 @@ namespace Martian_Robots.Controllers
             {
                 var res = _mainGameService.inputMethod(input);
                 return Ok(new StringDto(res));
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return new ObjectResult(new { status = "Error", message = $"{e.Message}" });
             }
@@ -39,7 +40,8 @@ namespace Martian_Robots.Controllers
             {
                 var res = _mainGameService.inputMethod(input.result);
                 return Ok(new StringDto(res));
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return new ObjectResult(new { status = "Error", message = $"{e.Message}" });
             }

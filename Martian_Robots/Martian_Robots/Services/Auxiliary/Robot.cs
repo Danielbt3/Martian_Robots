@@ -16,10 +16,10 @@
             switch (letter)
             {
                 case 'L':
-                    Rotate(90);
+                    Rotate(-90);
                     break;
                 case 'R':
-                    Rotate(-90);
+                    Rotate(90);
                     break;
                 case 'F':
                     Move(1);

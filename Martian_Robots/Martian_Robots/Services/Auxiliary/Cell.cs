@@ -3,7 +3,7 @@
     public class Cell
     {
         public Point cords { get; set; }
-        public bool isBorder { get; set; }
+        private bool isBorder { get; set; }
         private bool hasfallen;
         public bool HasFallen
         {
@@ -17,7 +17,7 @@
             }
         }
 
-        public Cell(Point cords,bool isBorder)
+        public Cell(Point cords, bool isBorder)
         {
             this.cords = cords;
             this.isBorder = isBorder;

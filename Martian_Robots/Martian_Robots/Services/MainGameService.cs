@@ -8,9 +8,11 @@ namespace Martian_Robots
 {
     public class MainGameService : IMainGameService
     {
+        public MainGameService() { }
+
         public string inputMethod(string input)
         {
-            List<string> orders = SplitCommand(ref input);
+            List<string> orders = SplitCommands(ref input);
 
             Map map = GenerateMap(orders);
 
@@ -22,19 +24,20 @@ namespace Martian_Robots
                     var action = orders.Skip(i * 4).Take(4).ToList();
                     Robot robot = GenerateRobot(map, action);
 
-                    res += ExecuteCommands(action[3], robot, map) + " \n";
-                }catch(Exception e)
+                    res += ExecuteCommands(action[3], robot, map) + " \n ";
+                }
+                catch (Exception e)
                 {
-                    res += e.Message + " \n";
+                    res += e.Message + " \n ";
                 }
             }
 
             return res;
         }
 
-        private static List<string> SplitCommand(ref string input)
+        private static List<string> SplitCommands(ref string input)
         {
-            input = input.Replace('\n', ' ');
+            input = input.Replace('\n', ' ').Replace('\r', ' ');
             List<string> orders = input.Trim().Split(' ').ToList();
 
             if (orders.Count < 6 || (orders.Count() - 2) % 4 != 0)
@@ -49,7 +52,11 @@ namespace Martian_Robots
             if (map.MapDimensions.X < cords.Item1 || map.MapDimensions.Y < cords.Item2)
                 throw new Exception($"Position X: {cords.Item1} Y: {cords.Item2} out of the map");
 
-            return new Robot(new Point(cords.Item1, cords.Item2), (Orientations)Enum.Parse(typeof(Orientations), action[2], true));
+            if (!Enum.IsDefined(typeof(Orientations), action[2]))
+                throw new Exception($"Orientation {action[2]} not recognized , please use one of the following : N E S W");
+            var orientation = (Orientations)Enum.Parse(typeof(Orientations), action[2], true);
+
+            return new Robot(new Point(cords.Item1, cords.Item2), orientation);
         }
 
         private Map GenerateMap(List<string> orders)
@@ -63,6 +70,8 @@ namespace Martian_Robots
 
         private string ExecuteCommands(string commands, Robot robot, Map map)
         {
+            if (commands.Length > 100)
+                throw new Exception("Commands strings must have 100 characters maximum");
             Point newPosition;
             foreach (char command in commands)
             {
@@ -71,14 +80,14 @@ namespace Martian_Robots
                 newPosition = robot.position;
                 if (newPosition.X > map.MapDimensions.X || newPosition.Y > map.MapDimensions.Y)
                 {
-                    var oldCell = map.grid.First(x => x.cords.X == oldPosition.X && x.cords.Y == oldPosition.Y);
-                    if (oldCell.HasFallen)
+                    var cellNumber = map.grid.IndexOf(map.grid.First(x => x.cords.X == oldPosition.X && x.cords.Y == oldPosition.Y));
+                    if (map.grid[cellNumber].HasFallen)
                     {
                         robot.position = oldPosition;
                     }
                     else
                     {
-                        oldCell.HasFallen = true;
+                        map.grid[cellNumber].HasFallen = true;
                         return (oldPosition.X + " " + oldPosition.Y + " " + robot.GetOrientation() + " LOST");
                     }
                 }
