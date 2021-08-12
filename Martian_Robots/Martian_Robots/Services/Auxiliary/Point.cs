@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Martian_Robots.Services.Auxiliary
+﻿namespace Martian_Robots.Services.Auxiliary
 {
     public class Point
     {
         public int X { get; set; }
-        public int Y { get; set;}
+        public int Y { get; set; }
+        public Point() { }
+        public Point(int X,int Y) {
+            this.X = X;
+            this.Y = Y;
+        }
+        public Point(Point point) {
+            this.X = point.X;
+            this.Y = point.Y;
+        }
     }
 }

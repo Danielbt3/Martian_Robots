@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Martian_Robots.Services.Auxiliary
+﻿namespace Martian_Robots.Services.Auxiliary
 {
     public class Robot
     {
-        private Point Position { get; set; }
-        private Orientations Orientation { get; set; }
+        public Point position { get; set; }
+        private Orientations orientation { get; set; }
 
-        public Robot(Point Position, Orientations Orientation)
+        public Robot(Point position, Orientations orientation)
         {
-            this.Position = Position;
-            this.Orientation = Orientation;
+            this.position = position;
+            this.orientation = orientation;
         }
 
         public void Instruction(char letter)
@@ -32,34 +27,43 @@ namespace Martian_Robots.Services.Auxiliary
             }
         }
 
+        public void MoveBack(int steps)
+        {
+            Move(steps);
+        }
+
         private void Rotate(int degrees)
         {
-            int result = degrees + (int)Orientation;
+            int result = degrees + (int)orientation;
             if (result >= 360)
                 result = result - (360 * (result / 360));
-            if (result <= 0)
-                result = 360-(result + (-360 * (result / -360)));
-            Orientation = (Orientations)result;
+            if (result < 0)
+                result = 360 + (result + (-360 * (result / -360)));
+            orientation = (Orientations)result;
         }
 
         private void Move(int steps)
         {
-            switch (Orientation)
+            switch (orientation)
             {
                 case Orientations.N:
-                    Position.Y += steps;
+                    position.Y += steps;
                     break;
                 case Orientations.E:
-                    Position.X += steps;
+                    position.X += steps;
                     break;
                 case Orientations.S:
-                    Position.Y -= steps;
+                    position.Y -= steps;
                     break;
                 case Orientations.W:
-                    Position.X -= steps;
+                    position.X -= steps;
                     break;
             }
         }
+
+        #region Get
+        public Orientations GetOrientation() => orientation;
+        #endregion
     }
 
     public enum Orientations

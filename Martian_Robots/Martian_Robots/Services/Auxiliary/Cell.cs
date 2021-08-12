@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Martian_Robots.Services.Auxiliary
+﻿namespace Martian_Robots.Services.Auxiliary
 {
     public class Cell
     {
-        public Point Cords { get; set; }
-        public bool IsBorder { get; set; }
+        public Point cords { get; set; }
+        public bool isBorder { get; set; }
         private bool hasfallen;
         public bool HasFallen
         {
             get { return hasfallen; }
             set
             {
-                if (IsBorder)
+                if (isBorder)
                 {
                     hasfallen = value;
                 }
             }
+        }
+
+        public Cell(Point cords,bool isBorder)
+        {
+            this.cords = cords;
+            this.isBorder = isBorder;
         }
     }
 }
