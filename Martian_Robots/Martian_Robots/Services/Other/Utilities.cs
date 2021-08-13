@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 
 namespace Martian_Robots.Services.Auxiliary
 {
@@ -17,6 +18,17 @@ namespace Martian_Robots.Services.Auxiliary
                 throw new Exception($"Coordinates bigger than 50 are not allowed");
 
             return (mapX, mapY);
+        }
+
+        public static string GetIpValue(HttpRequest httpRequest)
+        {
+            string ipAdd = httpRequest.Headers["HTTP_X_FORWARDED_FOR"];
+
+            if (string.IsNullOrEmpty(ipAdd))
+            {
+                return httpRequest.Headers["REMOTE_ADDR"];
+            }
+            return ipAdd;
         }
     }
 }

@@ -18,9 +18,11 @@
                 case 'L':
                     Rotate(-90);
                     break;
+
                 case 'R':
                     Rotate(90);
                     break;
+
                 case 'F':
                     Move(1);
                     break;
@@ -49,12 +51,15 @@
                 case Orientations.N:
                     position.Y += steps;
                     break;
+
                 case Orientations.E:
                     position.X += steps;
                     break;
+
                 case Orientations.S:
                     position.Y -= steps;
                     break;
+
                 case Orientations.W:
                     position.X -= steps;
                     break;
@@ -62,8 +67,10 @@
         }
 
         #region Get
+
         public Orientations GetOrientation() => orientation;
-        #endregion
+
+        #endregion Get
     }
 
     public enum Orientations

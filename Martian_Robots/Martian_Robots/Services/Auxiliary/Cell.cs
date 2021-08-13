@@ -5,6 +5,7 @@
         public Point cords { get; set; }
         private bool isBorder { get; set; }
         private bool hasfallen;
+
         public bool HasFallen
         {
             get { return hasfallen; }

@@ -6,6 +6,7 @@ namespace Martian_Robots.Services.Auxiliary
     {
         public List<Cell> grid = new List<Cell>();
         private Point mapDimensions = new Point();
+
         public Map(int X, int Y)
         {
             mapDimensions.X = X; mapDimensions.Y = Y;
@@ -23,7 +24,9 @@ namespace Martian_Robots.Services.Auxiliary
         }
 
         #region Get
+
         public Point MapDimensions => mapDimensions;
-        #endregion
+
+        #endregion Get
     }
 }
