@@ -45,3 +45,4 @@ D:\Proyectos\Martian_Robots\Martian_Robots\Martian_Robots\obj\Debug\net5.0\Marti
 D:\Proyectos\Martian_Robots\Martian_Robots\Martian_Robots\obj\Debug\net5.0\ref\Martian_Robots.dll
 D:\Proyectos\Martian_Robots\Martian_Robots\Martian_Robots\obj\Debug\net5.0\Martian_Robots.pdb
 D:\Proyectos\Martian_Robots\Martian_Robots\Martian_Robots\obj\Debug\net5.0\Martian_Robots.genruntimeconfig.cache
+D:\Proyectos\Martian_Robots\Martian_Robots\Martian_Robots\obj\Debug\net5.0\Martian_Robots.csproj.AssemblyReference.cache
